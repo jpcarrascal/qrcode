@@ -4,7 +4,6 @@
   "description": "QR Code generator API",
   "main": "index.js",
   "scripts": {
-    
   },
   "author": "JP Carrascal",
   "license": "ISC",
