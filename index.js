@@ -12,14 +12,16 @@ app.use(bodyParser.json());
 // Define a simple GET endpoint
 app.get('/qr', (req, res) => {
     if(req.query.string) {
-        let width = 400;
-        if(req.query.width) width = req.query.width;
+        let width = 250;
+        let margin = 0;
+        if(req.query.width && Number.isInteger(parseInt(req.query.width))) width = req.query.width;
+        if(req.query.margin && Number.isInteger(parseInt(req.query.margin))) margin = req.query.margin;
         var string = req.query.string;
         const options = { errorCorrectionLevel: 'H',
                         type: 'image/png',
                         quality: 0.3,
                         width: width,
-                        margin: 1};
+                        margin: margin};
         QRCode.toDataURL(string, options, function (err, base64Str) {
             var imgUri = base64Str.split(';base64,').pop()
             var img = Buffer.from(imgUri, 'base64');
