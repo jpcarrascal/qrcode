@@ -1,5 +1,6 @@
 // Import necessary modules
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 var QRCode = require('qrcode');
 
@@ -14,14 +15,27 @@ app.get('/qr', (req, res) => {
     if(req.query.string) {
         let width = 250;
         let margin = 0;
-        if(req.query.width && Number.isInteger(parseInt(req.query.width))) width = req.query.width;
-        if(req.query.margin && Number.isInteger(parseInt(req.query.margin))) margin = req.query.margin;
+        let errorCorrectionLevel = 'L';
+        let color = {dark: '#000000FF', light: '#FFFFFFFF'};
+        if(req.query.width && Number.isInteger(parseInt(req.query.width)))
+            width = req.query.width;
+        if(req.query.margin && Number.isInteger(parseInt(req.query.margin)))
+            margin = req.query.margin;
+        if(req.query.errorCorrectionLevel && ['L','M','Q','H'].includes(req.query.errorCorrectionLevel))
+            errorCorrectionLevel = req.query.errorCorrectionLevel;
+        /*
+        if(req.query.colorDark && isValidColor(req.query.colorDark))
+            color.dark = req.query.colorDark;
+        if(req.query.colorLight && isValidColor(req.query.colorLight))
+            color.light = req.query.colorLight;
+        */
         var string = req.query.string;
-        const options = { errorCorrectionLevel: 'H',
+        const options = { errorCorrectionLevel: errorCorrectionLevel,
                         type: 'image/png',
                         quality: 0.3,
                         width: width,
-                        margin: margin};
+                        margin: margin,
+                        color: color};
         QRCode.toDataURL(string, options, function (err, base64Str) {
             var imgUri = base64Str.split(';base64,').pop()
             var img = Buffer.from(imgUri, 'base64');
@@ -38,6 +52,8 @@ app.get('/qr', (req, res) => {
     res.err(err);
     console.log(err);
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a simple POST endpoint
 app.post('/', (req, res) => {

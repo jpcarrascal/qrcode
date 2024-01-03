@@ -1,0 +1,17 @@
+/* styles.css */
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background-color: #EEE; /* Replace with your preferred background color */
+    color: #444; /* Replace with your preferred foreground color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#qr-form {
+    width: 300px;
+}

@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "QR Code generator API",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "JP Carrascal",
   "license": "ISC",
   "dependencies": {

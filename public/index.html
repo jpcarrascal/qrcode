@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Web Page</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+</head>
+<body>
+    <div id="title">
+        <h2>QR Code Generator</h2>
+    </div>
+    <form action="/api/qr" method="get" id="qr-form">
+        <table>
+            <tr>
+                <td>String / URL: </td>
+                <td><input type="text" name="string" required placeholder="your text"></td>
+            </tr>
+            <tr>
+                <td>
+                    Error correction level:
+                </td>
+                <td>
+                    <select name="errorCorrectionLevel">
+                        <option value="L">L</option>
+                        <option value="M">M</option>
+                        <option value="Q">Q</option>
+                        <option value="H">H</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Width: </td><td><input type="number" name="width" min="1" value="800"></td>
+            </tr>
+            <tr>
+                <td>Margin: </td><td><input type="number" name="margin" min="0" value="1"></td>
+            </tr>
+            <tr>
+                <td>Dark color: </td><td><input type="color" name="colorDark"></td>
+            </tr>
+            <tr>
+                <td>Light color: </td><td><input type="color" name="colorLight" value="#FFFFFF"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Generate QR code"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
