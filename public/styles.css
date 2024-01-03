@@ -2,16 +2,43 @@
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background-color: #EEE; /* Replace with your preferred background color */
-    color: #444; /* Replace with your preferred foreground color */
+    background-color: #92addd; /* Replace with your preferred background color */
+    color: #234; /* Replace with your preferred foreground color */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
-#qr-form {
-    width: 300px;
+.centered {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
+
+#qr-table {
+    width: 400px;
+    background-color: #AFC8ED;
+    padding: 10px;
+}
+
+#qr-container {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#result {
+    display: block;
+    width: 250px;
+}
+
+.info-text {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 80%;
+}   
+
