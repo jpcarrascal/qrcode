@@ -20,7 +20,12 @@
     </div>
 
     <div id="qr-container">
-        <img src="images/panda.png" alt="QR code" id="result">
+        <img src="images/panda.png" alt="QR code" id="result" />
+    </div>
+
+    <div id="buttons">
+        <button id="download">Download</button>
+        <button id="open-tab">Open in new tab</button>
     </div>
 
     <form action="/qr" method="get" id="qr-form">
@@ -31,7 +36,7 @@
             </tr>
             <tr>
                 <td>
-                    Error correction level:
+                    <a href="https://www.qrcode.com/en/about/error_correction.html">Error correction level</a>:
                 </td>
                 <td>
                     <select name="errorCorrectionLevel">
@@ -65,7 +70,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="info-text">If you find this tool useful, please consider listening to my band <a href="http://www.spacebarman.com">Spacebarman</a>:<br/>
+                <td colspan="2" class="info-text">If you find this tool useful, please consider following my band <a href="http://www.spacebarman.com">Spacebarman</a>:<br/>
                     <a href="https://open.spotify.com/artist/1o8zzq05yXKrsdQUrMzZdc?si=s-WCPn0FRlK8V9lS4cSn4A&nd=1&dlsi=db7568f3c2f442d2">Spotify</a> |
                     <a href="https://www.youtube.com/spacebarmanvideo">YouTube</a> |
                     <a href="https://www.instagram.com/spacebarman">Instagram</a>
@@ -88,6 +93,7 @@
         let qrContainer = img.parentElement;
         img.src = url;
         document.getElementById('submit').innerText = "Regenerate QR code";
+        document.getElementById("buttons").style.visibility = "visible";
     });
 
     document.getElementById('clear').addEventListener('click', function(e) {
@@ -97,10 +103,30 @@
         img.src = "images/panda.png";
         document.getElementById('qr-form').reset();
         document.getElementById('submit').innerText = "Generate QR code";
+        document.getElementById("buttons").style.visibility = "hidden";
     });
 
     document.querySelectorAll('a').forEach(item => {
         item.setAttribute('target', '_blank');
     });
+
+    document.getElementById('download').addEventListener('click', function(e) {
+        e.preventDefault();
+        let a = document.createElement('a');
+        let img = document.getElementById('result');
+        a.href = img.getAttribute('src');
+        a.download = "qr.png";
+        a.click();
+    });
+
+    document.getElementById('open-tab').addEventListener('click', function(e) {
+        e.preventDefault();
+        let a = document.createElement('a');
+        let img = document.getElementById('result');
+        a.href = img.getAttribute('src');
+        a.target = "_blank";
+        a.click();
+    }); 
+
 </script>
 </html>
