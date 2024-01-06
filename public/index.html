@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Web Page</title>
+    <title>QR Code Generator</title>
     <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
     <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2Q3J7X0EW"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'GA_TRACKING_ID');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-R2Q3J7X0EW');
     </script>
 </head>
 <body>
@@ -21,6 +22,7 @@
 
     <div id="qr-container">
         <img src="images/panda.png" alt="QR code" id="result" />
+        <!-- <span class="loader"></span> -->
     </div>
 
     <div id="buttons">
@@ -70,14 +72,14 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="info-text">If you find this tool useful, please consider following my band <a href="http://www.spacebarman.com">Spacebarman</a>:<br/>
+                <td colspan="2" class="info-text">
+                    Built by <a href="https://github.com/jpcarrascal">JP Carrascal</a>, based on <a href="https://www.npmjs.com/package/qrcode">node-qrcode</a>.
+                    <br />
+                    If you find this tool useful, please consider following my band <a href="http://www.spacebarman.com">Spacebarman</a>:<br/>
                     <a href="https://open.spotify.com/artist/1o8zzq05yXKrsdQUrMzZdc?si=s-WCPn0FRlK8V9lS4cSn4A&nd=1&dlsi=db7568f3c2f442d2">Spotify</a> |
                     <a href="https://www.youtube.com/spacebarmanvideo">YouTube</a> |
                     <a href="https://www.instagram.com/spacebarman">Instagram</a>
                 </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="info-text">This tool uses <a href="https://www.npmjs.com/package/qrcode">node-qrcode</a>.</td>
             </tr>
         </table>
     </form>
@@ -92,8 +94,6 @@
         let img = document.getElementById('result');
         let qrContainer = img.parentElement;
         img.src = url;
-        document.getElementById('submit').innerText = "Regenerate QR code";
-        document.getElementById("buttons").style.visibility = "visible";
     });
 
     document.getElementById('clear').addEventListener('click', function(e) {
@@ -126,7 +126,14 @@
         a.href = img.getAttribute('src');
         a.target = "_blank";
         a.click();
-    }); 
+    });
+
+    document.getElementById('result').addEventListener('load', function(e) {
+        if(document.getElementById('string').value.length > 0) {
+            document.getElementById('submit').innerText = "Regenerate QR code";
+            document.getElementById("buttons").style.visibility = "visible";
+        }
+    });
 
 </script>
 </html>
