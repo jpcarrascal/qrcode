@@ -21,7 +21,7 @@
     </div>
 
     <div id="qr-container">
-        <img src="images/panda.png" alt="QR code" id="result" />
+        <img src="images/turtle.jpg" alt="QR code" id="result" />
     </div>
 
     <div id="buttons">
@@ -99,7 +99,7 @@
         e.preventDefault();
         let img = document.getElementById('result');
         let imgContainer = img.parentElement;
-        img.src = "images/panda.png";
+        img.src = "images/turtle.jpg";
         document.getElementById('qr-form').reset();
         document.getElementById('submit').innerText = "Generate QR code";
         document.getElementById("buttons").style.visibility = "hidden";
