@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Generator</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- QR Code Library - QRious -->
+    <script src="lib/qrcode.min.js"></script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R2Q3J7X0EW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-R2Q3J7X0EW');
+    </script>
+</head>
+<body>
+    <div id="title">
+        <h1>QR CODE GENERATOR</h1>
+    </div>
+
+    <div id="qr-container">
+        <img src="images/turtle.jpg" alt="QR code" id="result" />
+    </div>
+
+    <div id="buttons">
+        <button id="download">Download</button>
+        <button id="open-tab">Open in new tab</button>
+    </div>
+
+    <form id="qr-form">
+        <table id="qr-table">
+            <tr>
+                <td>String / URL: </td>
+                <td><input type="text" id="string" name="string" required placeholder="your text"></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.qrcode.com/en/about/error_correction.html">Error correction level</a>:
+                </td>
+                <td>
+                    <select name="errorCorrectionLevel" id="errorCorrectionLevel">
+                        <option value="L">L</option>
+                        <option value="M" selected>M</option>
+                        <option value="Q">Q</option>
+                        <option value="H">H</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Width: </td><td><input type="number" name="width" id="width" min="1" value="800"></td>
+            </tr>
+            <tr>
+                <td>Margin: </td><td><input type="number" name="margin" id="margin" min="0" value="1"></td>
+            </tr>
+            <!--
+            <tr>
+                <td>Dark color: </td><td><input type="color" name="colorDark"></td>
+            </tr>
+            <tr>
+                <td>Light color: </td><td><input type="color" name="colorLight" value="#FFFFFF"></td>
+            </tr>
+            -->
+            <tr>
+                <td colspan="2">
+                    <div class="centered">
+                        <button type="submit" id="submit">Generate QR code</button>
+                        <button type="button" id="clear">Clear</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="info-text">
+                    Built by <a href="https://github.com/jpcarrascal">JP Carrascal</a>, based on <a href="https://www.npmjs.com/package/qrcode">node-qrcode</a>.
+                    <br />
+                    If you find this tool useful, please consider following my band <a href="http://www.spacebarman.com">Spacebarman</a>:<br/>
+                    <a href="https://open.spotify.com/artist/1o8zzq05yXKrsdQUrMzZdc?si=s-WCPn0FRlK8V9lS4cSn4A&nd=1&dlsi=db7568f3c2f442d2">Spotify</a> |
+                    <a href="https://www.youtube.com/spacebarmanvideo">YouTube</a> |
+                    <a href="https://www.instagram.com/spacebarman">Instagram</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <!-- Include the custom script for client-side QR generation -->
+    <script src="script.js"></script>
+</body>
+</html>
